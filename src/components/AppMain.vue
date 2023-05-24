@@ -5,7 +5,7 @@ import { store } from '../data/yugi'
 export default {
     data() {
         return {
-            store
+            store,
         }
     }
 }
