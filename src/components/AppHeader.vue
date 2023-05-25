@@ -14,7 +14,7 @@ export default {
         // genera carte attraverso il button, se la select è vuota genera 50 carte casuali, altrimenti se popolata genera le carte di quel rispettivo archetipo. si occupa di fare entrambe le chiamate alle api
         cardsGen() {
             this.store.api = "https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=" + this.archetipoSelezionato
-            if (this.archetipoSelezionato == "") {
+            if (this.archetipoSelezionato == "Tutti" || this.archetipoSelezionato == "") {
                 this.store.api = "https://db.ygoprodeck.com/api/v7/cardinfo.php?num=50&offset=0"
             }
             axios.get(this.store.api).then((risp) => {
@@ -43,6 +43,7 @@ export default {
             <!-- prendo il valore della select attraverso il v-model per poterlo inserire nell'archetipoSelezionato dichiarato nel data sopra -->
             <select class="select" v-model="archetipoSelezionato">
                 <!-- ciclo sul mio array precedentemente popolato e popolo le option con tutti i nomi degli archetipi presenti in quell'array -->
+                <option>Tutti</option>
                 <option v-for="archetipo in store.archetipe">{{ archetipo.archetype_name }}
                 </option>
             </select>
